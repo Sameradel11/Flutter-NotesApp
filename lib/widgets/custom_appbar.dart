@@ -9,16 +9,26 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      height: 130,
+      child: Column(
         children: [
-          Text(
-            "Notes",
-            style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 25, color: KtextColor),
+          const SizedBox(
+            height: 60,
           ),
-          CustomSearchIcon()
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Notes",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: KtextColor),
+              ),
+              CustomSearchIcon()
+            ],
+          ),
         ],
       ),
     );
