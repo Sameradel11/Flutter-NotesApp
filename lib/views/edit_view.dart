@@ -28,11 +28,11 @@ class EditView extends StatelessWidget {
             const SizedBox(
               height: 70,
             ),
-            CustomTextField(
+            CustomTextFormField(
               hint: "Title",
               maxlines: 1,
             ),
-            CustomTextField(
+            CustomTextFormField(
               hint: "Content",
               maxlines: 12,
             ),

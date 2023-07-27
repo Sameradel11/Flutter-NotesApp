@@ -10,30 +10,65 @@ class ModalBottomSheetContent extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            CustomTextField(
-              hint: "Title",
-            ),
-            CustomTextField(
-              hint: "Content",
-              maxlines: 5,
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-             CustomButton(text: "Add"),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
+        child: AddNoteForm(),
       ),
     );
   }
 }
 
+class AddNoteForm extends StatefulWidget {
+  AddNoteForm({
+    super.key,
+  });
 
+  @override
+  State<AddNoteForm> createState() => _AddNoteFormState();
+}
+
+class _AddNoteFormState extends State<AddNoteForm> {
+  final GlobalKey<FormState> formkey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  String? title, subTitle;
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formkey,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 30,
+          ),
+          CustomTextFormField(
+            onSaved: (value) {
+              title = value;
+            },
+            hint: "Title",
+          ),
+          CustomTextFormField(
+            onSaved: (value) {
+              subTitle = value;
+            },
+            hint: "Content",
+            maxlines: 5,
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          CustomButton(
+            text: "Add",
+            onTap: () {
+              if (formkey.currentState!.validate()) {
+                formkey.currentState!.save();
+              } else {
+                autovalidateMode = AutovalidateMode.always;
+              }
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+        ],
+      ),
+    );
+  }
+}
