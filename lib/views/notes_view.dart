@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import "package:audioplayers/audioplayers.dart";
 import 'package:notes_app/consts.dart';
 
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
 import '../widgets/notes_viewbody.dart';
 
 class NotesView extends StatelessWidget {
@@ -38,49 +40,31 @@ class ModalBottomSheetContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 100,
-          ),
-          CustomTextField(
-            hint: "Title",
-          ),
-          CustomTextField(
-            hint: "Body",
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30,
+            ),
+            CustomTextField(
+              hint: "Title",
+            ),
+            CustomTextField(
+              hint: "Content",
+              maxlines: 5,
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            CustomButton(),
+            SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class CustomTextField extends StatelessWidget {
-  CustomTextField({
-    required String hint,
-    super.key,
-  });
 
-  String? hint;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-      child:  TextField(
-        cursorColor: KtextFieldColor,
-        decoration: InputDecoration(
-            hintText: "Hint",
-            hintStyle: TextStyle(color: KtextFieldColor),
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(color: Colors.white60)),
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(color: KtextFieldColor)),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(9),
-                borderSide: BorderSide(color: Colors.red))),
-      ),
-    );
-  }
-}
