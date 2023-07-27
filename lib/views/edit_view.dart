@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:notes_app/widgets/custom_appbar.dart';
+import 'package:notes_app/widgets/custom_button.dart';
+import 'package:notes_app/widgets/custom_text_field.dart';
 
 class EditView extends StatelessWidget {
   const EditView({super.key});
@@ -11,7 +13,32 @@ class EditView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [CustomAppBar(icon: FontAwesomeIcons.check,iconsize: 20,)]),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            CustomAppBar(
+              onsubmit: () {
+                Navigator.pop(context);
+              },
+              title: "Edit Note",
+              icon: FontAwesomeIcons.check,
+              iconsize: 20,
+            ),
+            const SizedBox(
+              height: 70,
+            ),
+            CustomTextField(
+              hint: "Title",
+              maxlines: 1,
+            ),
+            CustomTextField(
+              hint: "Content",
+              maxlines: 12,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

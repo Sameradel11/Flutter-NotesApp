@@ -25,7 +25,7 @@ class ModalBottomSheetContent extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            const CustomButton(),
+             CustomButton(text: "Add"),
             const SizedBox(
               height: 20,
             ),

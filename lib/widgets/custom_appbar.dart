@@ -4,9 +4,16 @@ import 'package:notes_app/consts.dart';
 import 'package:notes_app/widgets/custom_search_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
-  CustomAppBar({super.key, required this.icon, required this.iconsize});
+  CustomAppBar(
+      {super.key,
+      required this.icon,
+      required this.iconsize,
+      required this.title,
+      required this.onsubmit});
   IconData icon;
   double iconsize;
+  String title;
+  void Function() onsubmit;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -21,13 +28,14 @@ class CustomAppBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Notes",
+                title,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     color: KtextColor),
               ),
               CustomSearchIcon(
+                onsubmit: onsubmit,
                 icon: icon,
                 iconsize: iconsize,
               )

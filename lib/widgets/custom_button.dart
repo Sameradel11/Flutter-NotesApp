@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 import '../consts.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
-
+  CustomButton({super.key, required this.text});
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
         decoration: BoxDecoration(color: KtextFieldColor),
         width: MediaQuery.of(context).size.width,
-        child: const Center(
+        child: Center(
           child: Text(
-            "Add",
+            text,
             style: TextStyle(
                 color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
           ),

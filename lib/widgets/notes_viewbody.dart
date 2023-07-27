@@ -12,6 +12,8 @@ class NotesViewBody extends StatelessWidget {
     return Column(
       children: [
         CustomAppBar(
+          onsubmit: () {},
+          title: "Notes",
           iconsize: 30,
           icon: Icons.search,
         ),
