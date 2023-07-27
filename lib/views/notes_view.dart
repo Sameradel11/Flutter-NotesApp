@@ -7,6 +7,7 @@ import 'package:notes_app/consts.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/notes_viewbody.dart';
+import 'modal_bottom_sheet_view.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
@@ -21,10 +22,10 @@ class NotesView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16)),
               context: context,
               builder: (context) {
-                return ModalBottomSheetContent();
+                return const ModalBottomSheetContent();
               });
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       body: const Padding(
         padding: EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 16),
@@ -33,38 +34,3 @@ class NotesView extends StatelessWidget {
     );
   }
 }
-
-class ModalBottomSheetContent extends StatelessWidget {
-  const ModalBottomSheetContent({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 30,
-            ),
-            CustomTextField(
-              hint: "Title",
-            ),
-            CustomTextField(
-              hint: "Content",
-              maxlines: 5,
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            CustomButton(),
-            SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-

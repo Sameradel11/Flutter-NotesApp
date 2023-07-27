@@ -4,8 +4,9 @@ import 'package:notes_app/consts.dart';
 import 'package:notes_app/widgets/custom_search_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
+  CustomAppBar({super.key, required this.icon, required this.iconsize});
+  IconData icon;
+  double iconsize;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -26,7 +27,10 @@ class CustomAppBar extends StatelessWidget {
                     fontSize: 25,
                     color: KtextColor),
               ),
-              CustomSearchIcon()
+              CustomSearchIcon(
+                icon: icon,
+                iconsize: iconsize,
+              )
             ],
           ),
         ],

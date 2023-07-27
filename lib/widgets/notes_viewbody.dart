@@ -11,7 +11,10 @@ class NotesViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBar(),
+        CustomAppBar(
+          iconsize: 30,
+          icon: Icons.search,
+        ),
         Expanded(
           child: ListNotesBuilder(),
         )
