@@ -19,7 +19,7 @@ class ModalBottomSheetContent extends StatelessWidget {
         child: BlocConsumer<NoteCubit, AddNoteState>(
           listener: (context, state) {
             if (state is AddNoteFailure) {
-              print("Error is '${state.errormessage}'");
+              debugPrint("Error is '${state.errormessage}'");
             } else if (state is AddNotesuccess) {
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
@@ -27,9 +27,9 @@ class ModalBottomSheetContent extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            return ModalProgressHUD(
-                inAsyncCall: state is AddNoteLoading ? true : false,
-                child: SingleChildScrollView(child: const AddNoteForm()));
+            return AbsorbPointer(
+                absorbing: state is AddNoteLoading ? true : false,
+                child: const SingleChildScrollView(child: AddNoteForm()));
           },
         ),
       ),
