@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:meta/meta.dart';
 import 'package:notes_app/consts.dart';
 import 'package:notes_app/model/note_model.dart';
 
@@ -15,7 +15,7 @@ class NoteCubit extends Cubit<AddNoteState> {
       await notesBox.add(note);
       emit(AddNotesuccess());
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
       emit(AddNoteFailure("something went wrong\n ${e.toString()}"));
     }
   }

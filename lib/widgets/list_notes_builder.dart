@@ -10,7 +10,7 @@ class ListNotesBuilder extends StatelessWidget {
     return ListView.builder(
         padding: const EdgeInsets.all(0),
         itemBuilder: (context, counter) {
-          return NoteItem();
+          return const NoteItem();
         });
   }
 }

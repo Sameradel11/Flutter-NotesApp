@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'custom_appbar.dart';
-import 'custom_note_item.dart';
 import 'list_notes_builder.dart';
 
 class NotesViewBody extends StatelessWidget {
@@ -17,7 +14,7 @@ class NotesViewBody extends StatelessWidget {
           iconsize: 30,
           icon: Icons.search,
         ),
-        Expanded(
+        const Expanded(
           child: ListNotesBuilder(),
         )
       ],

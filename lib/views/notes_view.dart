@@ -1,11 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import "package:audioplayers/audioplayers.dart";
-import 'package:notes_app/consts.dart';
-
-import '../widgets/custom_button.dart';
-import '../widgets/custom_text_field.dart';
 import '../widgets/notes_viewbody.dart';
 import 'modal_bottom_sheet_view.dart';
 

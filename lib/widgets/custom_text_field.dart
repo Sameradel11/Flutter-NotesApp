@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../consts.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -25,16 +23,16 @@ class CustomTextFormField extends StatelessWidget {
         maxLines: maxlines,
         decoration: InputDecoration(
             hintText: hint,
-            hintStyle: TextStyle(color: KtextFieldColor),
+            hintStyle: const TextStyle(color: KtextFieldColor),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
                 borderSide: const BorderSide(color: Colors.white60)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(color: KtextFieldColor)),
+                borderSide:const  BorderSide(color:  KtextFieldColor)),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(9),
-                borderSide: BorderSide(color: Colors.red))),
+                borderSide: const BorderSide(color: Colors.red))),
       ),
     );
   }

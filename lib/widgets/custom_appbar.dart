@@ -23,13 +23,13 @@ class CustomAppBar extends StatelessWidget {
           const SizedBox(
             height: 60,
           ),
-          Row(
+          Row( 
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     color: KtextColor),

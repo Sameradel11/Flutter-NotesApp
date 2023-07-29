@@ -1,9 +1,6 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:notes_app/widgets/custom_appbar.dart';
-import 'package:notes_app/widgets/custom_button.dart';
 import 'package:notes_app/widgets/custom_text_field.dart';
 
 class EditView extends StatelessWidget {
@@ -28,11 +25,11 @@ class EditView extends StatelessWidget {
             const SizedBox(
               height: 70,
             ),
-            CustomTextFormField(
+            const CustomTextFormField(
               hint: "Title",
               maxlines: 1,
             ),
-            CustomTextFormField(
+            const CustomTextFormField(
               hint: "Content",
               maxlines: 12,
             ),

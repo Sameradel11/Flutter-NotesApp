@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../consts.dart';
 
 class CustomButton extends StatelessWidget {
@@ -12,19 +10,19 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
           height: 50,
-          decoration: BoxDecoration(color: KtextFieldColor),
+          decoration: const BoxDecoration(color: KtextFieldColor),
           width: MediaQuery.of(context).size.width,
           child: Center(
             child: isLoading
                 ? const CircularProgressIndicator()
                 :  Text(
                     text,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 24,
                         fontWeight: FontWeight.bold),
