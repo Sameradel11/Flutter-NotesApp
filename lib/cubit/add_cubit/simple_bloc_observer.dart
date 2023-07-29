@@ -31,4 +31,5 @@ class SimpleBlocObserver implements BlocObserver {
   void onTransition(Bloc bloc, Transition transition) {
     // TODO: implement onTransition
   }
+  
 }
