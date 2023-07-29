@@ -29,7 +29,7 @@ class NotesView extends StatelessWidget {
       ),
       body: const Padding(
         padding: EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 16),
-        child: widget(child: NotesViewBody()),
+        child: NotesViewBody(),
       ),
     );
   }

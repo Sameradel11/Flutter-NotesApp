@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notes_app/cubit/add_cubit/note_cubit.dart';
@@ -11,19 +12,27 @@ class ModalBottomSheetContent extends StatelessWidget {
   const ModalBottomSheetContent({super.key});
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: SingleChildScrollView(
+    return BlocProvider(
+      create: (context) => NoteCubit(),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
         child: BlocConsumer<NoteCubit, AddNoteState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state is AddNoteFailure) {
+              print("Error is '${state.errormessage}'");
+            } else if (state is AddNotesuccess) {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Note Added successfulyy")));
+            }
+          },
           builder: (context, state) {
             return ModalProgressHUD(
                 inAsyncCall: state is AddNoteLoading ? true : false,
-                child: const AddNoteForm());
+                child: SingleChildScrollView(child: const AddNoteForm()));
           },
         ),
       ),
     );
   }
 }
-
