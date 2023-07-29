@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/add_cubit/note_cubit.dart';
 import '../widgets/add_note_form.dart';
 
-
 class ModalBottomSheetContent extends StatelessWidget {
   const ModalBottomSheetContent({super.key});
   @override
@@ -11,7 +10,11 @@ class ModalBottomSheetContent extends StatelessWidget {
     return BlocProvider(
       create: (context) => NoteCubit(),
       child: Padding(
-        padding: const EdgeInsets.all(5.0),
+        padding: EdgeInsets.only(
+            top: 5,
+            right: 5,
+            left: 5,
+            bottom: MediaQuery.of(context).viewInsets.bottom),
         child: BlocConsumer<NoteCubit, AddNoteState>(
           listener: (context, state) {
             if (state is AddNoteFailure) {
