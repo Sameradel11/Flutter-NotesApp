@@ -36,6 +36,7 @@ class _EditViewState extends State<EditView> {
                   widget.note.title = newtitle ?? widget.note.title;
                   widget.note.content = newcontent ?? widget.note.content;
                   Navigator.pop(context);
+                  // widget.note.save();
                   BlocProvider.of<FetchNotesCubit>(context).fetchAllNotes();
                 },
                 title: "Edit Note",
