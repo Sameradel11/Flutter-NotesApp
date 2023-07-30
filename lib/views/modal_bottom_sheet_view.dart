@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/add_cubit/note_cubit.dart';
+import 'package:notes_app/cubit/fetch_notes_cubit/fetch_notes_cubit.dart';
 import '../widgets/add_note_form.dart';
 
 class ModalBottomSheetContent extends StatelessWidget {
@@ -20,6 +21,7 @@ class ModalBottomSheetContent extends StatelessWidget {
             if (state is AddNoteFailure) {
               debugPrint("Error is '${state.errormessage}'");
             } else if (state is AddNotesuccess) {
+              BlocProvider.of<FetchNotesCubit>(context).fetchAllNotes();
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Note Added successfulyy")));
