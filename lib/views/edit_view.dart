@@ -1,16 +1,28 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubit/fetch_notes_cubit/fetch_notes_cubit.dart';
 import 'package:notes_app/model/note_model.dart';
 import 'package:notes_app/widgets/custom_appbar.dart';
 import 'package:notes_app/widgets/custom_text_field.dart';
 
-class EditView extends StatelessWidget {
+class EditView extends StatefulWidget {
   EditView({super.key, required this.note});
   static const id = "EditView";
   final NoteModel note;
+
+  @override
+  State<EditView> createState() => _EditViewState();
+}
+
+class _EditViewState extends State<EditView> {
   final TextEditingController titleController = TextEditingController();
+
   final TextEditingController subTitleController = TextEditingController();
+  String? newtitle;
+  String? newcontent;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +33,10 @@ class EditView extends StatelessWidget {
             children: [
               CustomAppBar(
                 onsubmit: () {
+                  widget.note.title = newtitle ?? widget.note.title;
+                  widget.note.content = newcontent ?? widget.note.content;
                   Navigator.pop(context);
+                  BlocProvider.of<FetchNotesCubit>(context).fetchAllNotes();
                 },
                 title: "Edit Note",
                 icon: FontAwesomeIcons.check,
@@ -31,13 +46,19 @@ class EditView extends StatelessWidget {
                 height: 70,
               ),
               CustomTextFormField(
-                initialtext: note.title,
+                onchage: (value) {
+                  newtitle = value;
+                },
+                initialtext: widget.note.title,
                 controller: titleController,
                 hint: "Title",
-                maxlines: 1,
+                maxlines: 2,
               ),
               CustomTextFormField(
-                initialtext: note.content,
+                onchage: (value) {
+                  newcontent = value;
+                },
+                initialtext: widget.note.content,
                 hint: "Content",
                 maxlines: 12,
               ),
