@@ -19,20 +19,7 @@ class NotesViewBody extends StatelessWidget {
             iconsize: 30,
             icon: Icons.search,
           ),
-          BlocBuilder<FetchNotesCubit, FetchNotesState>(
-            builder: (context, state) {
-              BlocProvider.of<FetchNotesCubit>(context).fetchAllNotes();
-              if (state is FetchNotesSuccess) {
-                 print("list is" + state.allNotes[0].toString());
-                return Expanded(
-                    child: ListNotesBuilder(
-                  allnotes: state.allNotes,
-                ));
-              } else {
-                return const Text("There is no Notes Yet");
-              }
-            },
-          )
+          Expanded(child: ListNotesBuilder())
         ],
       ),
     );

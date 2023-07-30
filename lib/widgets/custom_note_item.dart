@@ -5,7 +5,7 @@ import '../model/note_model.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.note});
- final NoteModel note;
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -21,41 +21,51 @@ class NoteItem extends StatelessWidget {
           decoration: BoxDecoration(
               color: Colors.blueGrey.shade700,
               borderRadius: BorderRadius.circular(16)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ListTile(
-                title:  Text(
-                  note.title,
-                  style: const TextStyle(
-                      color: Colors.black, fontSize: 21, fontFamily: "Poppins"),
-                ),
-                subtitle: Padding(
-                  padding:  const EdgeInsets.only(top: 16.0, right: 16),
-                  child: Text(note.content,
-                      style: TextStyle(
-                          color: Colors.black.withOpacity(0.7),
-                          fontSize: 15,
-                          fontFamily: "Poppins")),
-                ),
-                trailing: IconButton(
-                  icon: const Icon(
-                    Icons.delete,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-              ListTile(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ListTile(
                   title: Text(
-                note.date,
-                style: TextStyle(
-                    color: Colors.black.withOpacity(0.7),
-                    fontSize: 15,
-                    fontFamily: "Poppins"),
-                textAlign: TextAlign.end,
-              ))
-            ],
+                    note.title,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 21,
+                        fontFamily: "Poppins"),
+                  ),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(top: 16.0, right: 16),
+                    child: Text(note.content,
+                        style: TextStyle(
+                            color: Colors.black.withOpacity(0.7),
+                            fontSize: 15,
+                            fontFamily: "Poppins")),
+                  ),
+                  trailing: IconButton(
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                      note.delete();
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: ListTile(
+                      title: Text(
+                    note.date,
+                    style: TextStyle(
+                        color: Colors.black.withOpacity(0.7),
+                        fontSize: 20,
+                        fontFamily: "Poppins"),
+                    textAlign: TextAlign.end,
+                  )),
+                )
+              ],
+            ),
           )),
     );
   }

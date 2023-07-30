@@ -1,19 +1,36 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubit/fetch_notes_cubit/fetch_notes_cubit.dart';
 import 'package:notes_app/model/note_model.dart';
 
 import 'custom_note_item.dart';
 
 class ListNotesBuilder extends StatelessWidget {
-  const ListNotesBuilder({super.key, required this.allnotes});
-  final List<NoteModel> allnotes;
+  const ListNotesBuilder({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        padding: const EdgeInsets.all(0),
-        itemCount: allnotes.length,
-        itemBuilder: (context, counter) {
-          return NoteItem(note: allnotes[counter],);
-        });
+    BlocProvider.of<FetchNotesCubit>(context).fetchAllNotes();
+    return BlocBuilder<FetchNotesCubit, FetchNotesState>(
+        builder: (context, state) {
+      if (state is FetchNotesSuccess) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: ListView.builder(
+            padding: const EdgeInsets.all(0),
+            itemCount: state.allNotes.length,
+            itemBuilder: (context, index) {
+              return NoteItem(
+                  note: state.allNotes[state.allNotes.length - 1 - index]);
+            },
+          ),
+        );
+      } else {
+        return const Center(child: CircularProgressIndicator());
+      }
+    });
   }
 }
