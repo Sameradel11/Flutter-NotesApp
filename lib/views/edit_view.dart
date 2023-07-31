@@ -2,8 +2,10 @@ import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubit/add_cubit/note_cubit.dart';
 import 'package:notes_app/cubit/fetch_notes_cubit/fetch_notes_cubit.dart';
 import 'package:notes_app/model/note_model.dart';
+import 'package:notes_app/widgets/add_note_form.dart';
 import 'package:notes_app/widgets/custom_appbar.dart';
 import 'package:notes_app/widgets/custom_text_field.dart';
 
@@ -35,8 +37,13 @@ class _EditViewState extends State<EditView> {
                 onsubmit: () {
                   widget.note.title = newtitle ?? widget.note.title;
                   widget.note.content = newcontent ?? widget.note.content;
+                  widget.note.color =
+                      BlocProvider.of<NoteCubit>(context).notecolor.value;
                   Navigator.pop(context);
-                  // widget.note.save();
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text("Note Editted succesfullt"),
+                    backgroundColor: Color(widget.note.color),
+                  ));
                   BlocProvider.of<FetchNotesCubit>(context).fetchAllNotes();
                 },
                 title: "Edit Note",
@@ -63,6 +70,7 @@ class _EditViewState extends State<EditView> {
                 hint: "Content",
                 maxlines: 12,
               ),
+              ColorListView()
             ],
           ),
         ),
