@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/fetch_notes_cubit/fetch_notes_cubit.dart';
-import 'package:notes_app/model/note_model.dart';
 
 import 'custom_note_item.dart';
 

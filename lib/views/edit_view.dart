@@ -1,6 +1,5 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/add_cubit/note_cubit.dart';
 import 'package:notes_app/cubit/fetch_notes_cubit/fetch_notes_cubit.dart';
@@ -10,7 +9,7 @@ import 'package:notes_app/widgets/custom_appbar.dart';
 import 'package:notes_app/widgets/custom_text_field.dart';
 
 class EditView extends StatefulWidget {
-  EditView({super.key, required this.note});
+  const EditView({super.key, required this.note});
   static const id = "EditView";
   final NoteModel note;
 
@@ -70,7 +69,7 @@ class _EditViewState extends State<EditView> {
                 hint: "Content",
                 maxlines: 12,
               ),
-              ColorListView()
+              const ColorListView()
             ],
           ),
         ),

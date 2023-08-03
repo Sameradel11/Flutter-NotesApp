@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/model/note_model.dart';
+
 import '../consts.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -25,6 +25,7 @@ class CustomTextFormField extends StatelessWidget {
         onChanged: onchage,
         initialValue: initialtext,
         onSaved: onSaved,
+        // ignore: body_might_complete_normally_nullable
         validator: (value) {
           if (value?.isEmpty ?? true) {
             return "Field is required";

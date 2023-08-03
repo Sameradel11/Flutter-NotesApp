@@ -56,7 +56,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 text: "Add",
                 onTap: () {
                   if (formkey.currentState!.validate()) {
-                    String time = DateFormat("hh:mm \n y-mm-dd")
+                    String time = DateFormat("hh:mm \n y-M-dd")
                         .format(DateTime.now())
                         .toString();
                     formkey.currentState!.save();
