@@ -4,6 +4,7 @@ import 'package:notes_app/cubit/add_cubit/note_cubit.dart';
 import 'package:notes_app/cubit/cubit/fetch_notes_cubit.dart';
 import 'package:notes_app/model/note_model.dart';
 import 'package:intl/intl.dart';
+import 'package:notes_app/widgets/custom_note_item.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 
@@ -39,24 +40,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
           key: formkey,
           child: Column(
             children: [
-              CustomButton(
-                isLoading: state is AddNoteLoading ? true : false,
-                text: "Add",
-                onTap: () {
-                  if (formkey.currentState!.validate()) {
-                    String time = DateFormat("hh:mm \n y-M-dd")
-                        .format(DateTime.now())
-                        .toString();
-                    formkey.currentState!.save();
-                    NoteModel note = NoteModel(title!, subTitle!,
-                        time, Colors.blue.value);
-                    BlocProvider.of<NoteCubit>(context).addNote(note);
-                    setState(() {});
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                  }
-                },
-              ),
               const SizedBox(
                 height: 30,
               ),
@@ -76,6 +59,17 @@ class _AddNoteFormState extends State<AddNoteForm> {
               const SizedBox(
                 height: 40,
               ),
+              ColorListView(),
+              const SizedBox(
+                height: 30,
+              ),
+              CustomButton(
+                isLoading: state is AddNoteLoading ? true : false,
+                text: "Add",
+                onTap: () {
+                  saveNote(context);
+                },
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -85,15 +79,29 @@ class _AddNoteFormState extends State<AddNoteForm> {
       },
     );
   }
+
+  void saveNote(BuildContext context) {
+    if (formkey.currentState!.validate()) {
+      int currentcolor = BlocProvider.of<NoteCubit>(context).notecolor.value;
+      String time =
+          DateFormat("hh:mm \n y-M-dd").format(DateTime.now()).toString();
+      formkey.currentState!.save();
+      NoteModel note = NoteModel(title!, subTitle!, time, currentcolor);
+      BlocProvider.of<NoteCubit>(context).addNote(note);
+      setState(() {});
+    } else {
+      autovalidateMode = AutovalidateMode.always;
+    }
+  }
 }
 
 class ColorCircle extends StatefulWidget {
-  ColorCircle({
+  const ColorCircle({
     super.key,
     required this.isActiv,
     required this.circleColor,
   });
-  bool isActiv;
+  final bool isActiv;
   final Color circleColor;
 
   @override

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:notes_app/consts.dart';
+import 'package:notes_app/cubit/cubit/fetch_notes_cubit.dart';
 import 'package:notes_app/model/note_model.dart';
 import 'package:notes_app/views/edit_view.dart';
 
@@ -10,7 +14,7 @@ class NoteItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return  EditView(note: note);
+          return EditView(note: note);
         }));
       },
       child: Container(
@@ -24,7 +28,7 @@ class NoteItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ListTile(
-                title:  Text(
+                title: Text(
                   note.title,
                   style: const TextStyle(
                       color: Colors.black, fontSize: 21, fontFamily: "Poppins"),
@@ -42,7 +46,10 @@ class NoteItem extends StatelessWidget {
                     Icons.delete,
                     color: Colors.black,
                   ),
-                  onPressed: () {},
+                  onPressed: () async{
+                    await note.delete();
+                    BlocProvider.of<FetchNotesCubit>(context).fetchnotes();
+                  },
                 ),
               ),
               ListTile(
