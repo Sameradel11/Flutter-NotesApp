@@ -10,10 +10,10 @@ class CustomAppBar extends StatelessWidget {
       required this.iconsize,
       required this.title,
       required this.onsubmit});
-  IconData icon;
-  double iconsize;
-  String title;
-  void Function() onsubmit;
+  final IconData icon;
+  final double iconsize;
+  final String title;
+  final void Function() onsubmit;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -32,7 +32,7 @@ class CustomAppBar extends StatelessWidget {
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
-                    color: KtextColor),
+                    color: ktextColor),
               ),
               CustomSearchIcon(
                 onsubmit: onsubmit,

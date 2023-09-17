@@ -18,18 +18,19 @@ class CustomTextFormField extends StatelessWidget {
           if (value?.isEmpty ?? true) {
             return "Field is required";
           }
+          return null;
         },
-        cursorColor: KtextFieldColor,
+        cursorColor: ktextFieldColor,
         maxLines: maxlines,
         decoration: InputDecoration(
             hintText: hint,
-            hintStyle: const TextStyle(color: KtextFieldColor),
+            hintStyle: const TextStyle(color: ktextFieldColor),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
                 borderSide: const BorderSide(color: Colors.white60)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide:const  BorderSide(color:  KtextFieldColor)),
+                borderSide: const BorderSide(color: ktextFieldColor)),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(9),
                 borderSide: const BorderSide(color: Colors.red))),

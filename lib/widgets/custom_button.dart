@@ -15,7 +15,7 @@ class CustomButton extends StatelessWidget {
         onTap: onTap,
         child: Container(
           height: 50,
-          decoration: const BoxDecoration(color: KtextFieldColor),
+          decoration: const BoxDecoration(color: ktextFieldColor),
           width: MediaQuery.of(context).size.width,
           child: Center(
             child: isLoading
