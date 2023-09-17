@@ -7,6 +7,7 @@ import 'package:notes_app/model/note_model.dart';
 part 'note_state.dart';
 
 class NoteCubit extends Cubit<AddNoteState> {
+  Color notecolor = Colors.red;
   NoteCubit() : super(AddNoteInitial());
   addNote(NoteModel note) async {
     emit(AddNoteLoading());
@@ -16,7 +17,7 @@ class NoteCubit extends Cubit<AddNoteState> {
       emit(AddNotesuccess());
     } catch (e) {
       debugPrint(e.toString());
-      emit(AddNoteFailure("something went wrong\n ${e.toString()}"));
+      emit(AddNoteFailure("something went wrong ${e.toString()}"));
     }
   }
 }

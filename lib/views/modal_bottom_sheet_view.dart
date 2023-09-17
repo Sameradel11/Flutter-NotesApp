@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/add_cubit/note_cubit.dart';
-import 'package:notes_app/cubit/cubit/fetch_notes_cubit.dart';
 import '../widgets/add_note_form.dart';
 
 class ModalBottomSheetContent extends StatelessWidget {

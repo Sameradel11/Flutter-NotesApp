@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/add_cubit/note_cubit.dart';
 import 'package:notes_app/cubit/cubit/fetch_notes_cubit.dart';
 import 'package:notes_app/model/note_model.dart';
-
+import 'package:intl/intl.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 
@@ -11,7 +11,7 @@ class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
     super.key,
   });
-
+  static Color? currcolor;
   @override
   State<AddNoteForm> createState() => _AddNoteFormState();
 }
@@ -20,6 +20,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> formkey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
+  int? color;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NoteCubit, AddNoteState>(
@@ -43,9 +44,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 text: "Add",
                 onTap: () {
                   if (formkey.currentState!.validate()) {
+                    String time = DateFormat("hh:mm \n y-M-dd")
+                        .format(DateTime.now())
+                        .toString();
                     formkey.currentState!.save();
                     NoteModel note = NoteModel(title!, subTitle!,
-                        DateTime.now().toString(), Colors.blue.value);
+                        time, Colors.blue.value);
                     BlocProvider.of<NoteCubit>(context).addNote(note);
                     setState(() {});
                   } else {
@@ -80,5 +84,91 @@ class _AddNoteFormState extends State<AddNoteForm> {
         );
       },
     );
+  }
+}
+
+class ColorCircle extends StatefulWidget {
+  ColorCircle({
+    super.key,
+    required this.isActiv,
+    required this.circleColor,
+  });
+  bool isActiv;
+  final Color circleColor;
+
+  @override
+  State<ColorCircle> createState() => _ColorCircleState();
+}
+
+class _ColorCircleState extends State<ColorCircle> {
+  @override
+  Widget build(BuildContext context) {
+    return widget.isActiv
+        ? CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 30,
+            child: CircleAvatar(
+              radius: 25,
+              backgroundColor: widget.circleColor,
+            ),
+          )
+        : CircleAvatar(
+            radius: 25,
+            backgroundColor: widget.circleColor,
+          );
+  }
+}
+
+class ColorListView extends StatefulWidget {
+  const ColorListView({super.key});
+  @override
+  State<ColorListView> createState() => _ColorListViewState();
+}
+
+class _ColorListViewState extends State<ColorListView> {
+  int currindex = -1;
+  @override
+  Widget build(BuildContext context) {
+    const List<Color> listcolor = [
+      Colors.black,
+      Colors.brown,
+      Colors.white,
+      Colors.green,
+      Colors.grey,
+      Colors.red,
+      Colors.redAccent,
+      Colors.yellow,
+      Colors.yellowAccent,
+      Colors.indigo,
+      Colors.orange,
+      Colors.pink,
+      Colors.deepPurple,
+      Colors.lightGreen,
+      Colors.lightBlue,
+      Colors.cyan,
+      Colors.cyanAccent
+    ];
+    return SizedBox(
+        height: 60,
+        child: ListView.builder(
+            itemCount: listcolor.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  currindex = index;
+                  BlocProvider.of<NoteCubit>(context).notecolor =
+                      listcolor[currindex];
+                  setState(() {});
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: ColorCircle(
+                    isActiv: currindex == index,
+                    circleColor: listcolor[index],
+                  ),
+                ),
+              );
+            }));
   }
 }
